@@ -1,10 +1,8 @@
-from errors import error_raiser
-from config.sms_provider import SMS_PROVIDERS
 from requests import request
 
 class EbulkSMS:
     @staticmethod
-    def sendSMS(recipient_number: str, body: str):
+    def sendSMS(recipient_number: str, body: str, error_raiser, SMS_PROVIDERS:dict):
         try:
             #TODO: Maybe give this it's own config? Not sure.
             USERNAME = SMS_PROVIDERS.get('provider3').get('username')
@@ -17,5 +15,4 @@ class EbulkSMS:
             )
             return response.text
         except Exception as exc:
-            print(exc)
             error_raiser(exc)

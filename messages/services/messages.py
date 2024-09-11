@@ -1,21 +1,17 @@
 from json import dumps
 from requests import post
-from typing import Dict
 
 from enums import EmailType
 from templates import ONBOARDING, CODE, EXPIRED_EXCHANGE,PASSWORD_RESET, PROFILE_CHANGE, PAID_EXCHANGE
 from schemas import MailtrapEmailSchema
-from config.email_provider import EMAIL_PROVIDERS, TEXT_PROVIDER
-from typing import Any
 from .ebulksms import EbulkSMS
 
-provider: Dict[str,Any] = EMAIL_PROVIDERS.get('provider3')
-text_provider: Dict[str,Any] = TEXT_PROVIDER.get('provider1')
 
 class MessageService:
     @staticmethod
     def sendBrevo(
         mailtrap_request: dict,
+        api_key: str,
         error_raiser
     ):
         try:
@@ -126,7 +122,7 @@ class MessageService:
                 "https://api.brevo.com/v3/smtp/email",
                 data=dumps(mailtrap_data),
                 headers={
-                    "api-key":"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",
+                    "api-key":api_key,
                     "content_type":"application/json",
                     "accept":"application/json"
                 }
