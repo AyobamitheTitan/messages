@@ -1,0 +1,5 @@
+pydantic==2.7.4
+pydantic_core==2.18.4
+setuptools==74.1.2
+wheel==0.44.0
+twine==5.1.1
